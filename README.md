@@ -49,9 +49,3 @@ NEXT_PUBLIC_BACKEND_WS_URL=ws://localhost:8000/ws/stream
 2. Start frontend
 3. Open: http://localhost:3000/dashboard
 
-## Next phases
-- Failure simulation engine
-- Infrastructure topology visualization
-- AI Copilot + Gemini integration
-- Incident reconstruction + predictive analytics
-
