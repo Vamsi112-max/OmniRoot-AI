@@ -26,7 +26,7 @@ export default function IncidentsPage() {
 
   // Construct API endpoint dynamically from WebSocket URL
   const apiBaseUrl = useMemo(() => {
-    const wsUrl = process.env.NEXT_PUBLIC_BACKEND_WS_URL || "ws://localhost:8000/ws/stream";
+    const wsUrl = process.env.NEXT_PUBLIC_BACKEND_WS_URL || "wss://omniroot-agentic-backend.onrender.com/ws/stream";
     return wsUrl.replace(/^ws(s)?:\/\//, "http$1://").replace(/\/ws\/stream$/, "/api");
   }, []);
 

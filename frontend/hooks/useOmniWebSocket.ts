@@ -57,7 +57,7 @@ export type OmniAiInsight = {
 };
 
 export function useOmniWebSocket() {
-  const wsUrl = process.env.NEXT_PUBLIC_BACKEND_WS_URL || "ws://localhost:8000/ws/stream";
+  const wsUrl = process.env.NEXT_PUBLIC_BACKEND_WS_URL || "wss://omniroot-agentic-backend.onrender.com/ws/stream";
 
   const [metrics, setMetrics] = useState<OmniMetricsPayload | null>(null);
   const [logs, setLogs] = useState<OmniLogEntry[]>([]);
