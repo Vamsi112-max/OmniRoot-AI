@@ -1,0 +1,7 @@
+oracleJdk-26/
+backend/.venv/
+node_modules/
+.next/
+dist/
+build/
+.env

@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* OmniRoot Cinematic SOC theme */
+:root {
+  --background: #05070c;
+  --foreground: #e5e7eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #05070c;
+    --foreground: #e5e7eb;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Animated HUD background */
+.omni-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(800px circle at 20% 10%, rgba(34, 211, 238, 0.18), transparent 55%),
+    radial-gradient(700px circle at 80% 20%, rgba(239, 68, 68, 0.14), transparent 60%),
+    radial-gradient(600px circle at 50% 90%, rgba(168, 85, 247, 0.12), transparent 60%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55));
+  opacity: 1;
+  z-index: 0;
+}
+
+/* Subtle scanlines */
+.omni-scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.02) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.35;
+  z-index: 1;
+}
+
+/* Gradient animated glow */
+.omni-glow {
+  position: fixed;
+  inset: -40vh -40vw;
+  pointer-events: none;
+  background: conic-gradient(
+    from 180deg,
+    rgba(34, 211, 238, 0.0),
+    rgba(34, 211, 238, 0.18),
+    rgba(239, 68, 68, 0.14),
+    rgba(168, 85, 247, 0.16),
+    rgba(34, 211, 238, 0.0)
+  );
+  filter: blur(55px);
+  opacity: 0.85;
+  animation: omniRotate 14s linear infinite;
+  z-index: 0;
+}
+
+@keyframes omniRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Fancy text selection */
+::selection {
+  background: rgba(34, 211, 238, 0.25);
+}
+
+/* Improve scrollbar look */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(34, 211, 238, 0.35) rgba(255, 255, 255, 0.06);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.35);
+  border-radius: 999px;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+}
+
+/* Terminal-ish typography */
+.omni-terminal {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+}
+
+/* Glass helper */
+.omni-glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(10px);
+}
+
