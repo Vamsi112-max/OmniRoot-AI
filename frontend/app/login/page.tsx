@@ -21,6 +21,14 @@ export default function LoginPage() {
     // Demo handshake: laptop/system key must exist to allow app to operate.
     localStorage.setItem("omni_laptop_key", laptopKey.trim());
     localStorage.setItem("omni_logged_in", "true");
+
+    // Single flying notification (demo): show once per fresh login.
+    try {
+      localStorage.setItem("omni_post_login_toast_pending", "true");
+    } catch {
+      // ignore
+    }
+
     router.push("/dashboard");
   };
 
@@ -134,12 +142,12 @@ export default function LoginPage() {
                     "noopener,noreferrer"
                   )
                 }
-                className="text-[11px] px-3 py-2 rounded-xl border border-cyan-500/30 bg-cyan-500/5 hover:bg-cyan-500/10 text-cyan-200 font-mono transition"
+                className="w-full py-6 mt-2 text-sm rounded-2xl border border-cyan-400/35 bg-cyan-500/5 hover:bg-cyan-500/15 text-cyan-200 font-mono transition shadow-[0_0_28px_rgba(34,211,238,0.10)]"
               >
-                Open Original Data
+                ▶ DEMO: Click to view Original Functional Data
               </button>
               <div className="text-[11px] text-slate-400/80 font-mono">
-                Demo link for original functional data.
+                Opens the reference video in a new tab.
               </div>
             </div>
           </div>
