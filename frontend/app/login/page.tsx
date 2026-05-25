@@ -1,22 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Shield, Lock, Mail, ArrowRight, Sparkles } from "lucide-react";
 
+const DEMO_ORIGINAL_DATA_URL = "https://youtu.be/e9QKWPwebog?si=50_jwozgDqW7pXNC";
 
 export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [laptopKey, setLaptopKey] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Skip/advance: go to login immediately, rest of app behaves normally.
+    // Demo handshake: laptop/system key must exist to allow app to operate.
+    localStorage.setItem("omni_laptop_key", laptopKey.trim());
     localStorage.setItem("omni_logged_in", "true");
     router.push("/dashboard");
   };
@@ -25,12 +28,13 @@ export default function LoginPage() {
     <div className="relative min-h-screen w-full flex items-center justify-center p-4">
       {/* Background glow matrix nodes */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.06)_0,transparent_60%)] pointer-events-none" />
-      
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="w-full max-w-md rounded-3xl border border-white/10 bg-white/[0.01] backdrop-blur-2xl p-8 relative overflow-hidden shadow-[0_0_50px_rgba(6,182,212,0.1)]">
+        className="w-full max-w-md rounded-3xl border border-white/10 bg-white/[0.01] backdrop-blur-2xl p-8 relative overflow-hidden shadow-[0_0_50px_rgba(6,182,212,0.1)]"
+      >
         {/* Subtle top scanner line */}
         <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent animate-pulse" />
 
@@ -62,10 +66,11 @@ export default function LoginPage() {
         </div>
 
         <form onSubmit={handleLogin} className="space-y-5 relative z-10">
-          
           {/* Email field */}
           <div className="space-y-1.5">
-            <label className="text-xs font-mono text-slate-400 uppercase tracking-wider block">Security ID (Email)</label>
+            <label className="text-xs font-mono text-slate-400 uppercase tracking-wider block">
+              Security ID (Email)
+            </label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500">
                 <Mail size={16} />
@@ -83,7 +88,9 @@ export default function LoginPage() {
 
           {/* Password field */}
           <div className="space-y-1.5">
-            <label className="text-xs font-mono text-slate-400 uppercase tracking-wider block">Access Key (Password)</label>
+            <label className="text-xs font-mono text-slate-400 uppercase tracking-wider block">
+              Access Key (Password)
+            </label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500">
                 <Lock size={16} />
@@ -96,6 +103,44 @@ export default function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 bg-black/40 border border-white/10 rounded-2xl text-slate-100 text-sm placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-cyan-500/40 focus:border-cyan-500/30 transition shadow-inner font-mono"
               />
+            </div>
+          </div>
+
+          {/* Laptop/System Key field */}
+          <div className="space-y-1.5">
+            <label className="text-xs font-mono text-slate-400 uppercase tracking-wider block">
+              Laptop/System Key
+            </label>
+            <div className="relative">
+              <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500">
+                <Shield size={16} className="text-cyan-400" />
+              </span>
+              <input
+                required
+                value={laptopKey}
+                onChange={(e) => setLaptopKey(e.target.value)}
+                placeholder="Enter demo laptop/system key"
+                className="w-full pl-10 pr-4 py-3 bg-black/40 border border-white/10 rounded-2xl text-slate-100 text-sm placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-cyan-500/40 focus:border-cyan-500/30 transition shadow-inner font-mono"
+              />
+            </div>
+
+            <div className="mt-2 flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() =>
+                  window.open(
+                    DEMO_ORIGINAL_DATA_URL,
+                    "_blank",
+                    "noopener,noreferrer"
+                  )
+                }
+                className="text-[11px] px-3 py-2 rounded-xl border border-cyan-500/30 bg-cyan-500/5 hover:bg-cyan-500/10 text-cyan-200 font-mono transition"
+              >
+                Open Original Data
+              </button>
+              <div className="text-[11px] text-slate-400/80 font-mono">
+                Demo link for original functional data.
+              </div>
             </div>
           </div>
 
@@ -125,8 +170,8 @@ export default function LoginPage() {
             )}
           </motion.button>
         </form>
-
       </motion.div>
     </div>
   );
 }
+

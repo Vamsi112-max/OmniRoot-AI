@@ -15,6 +15,7 @@ export default function SettingsPage() {
     darkMode: true,
     autoScaling: true,
     dataRetention: "30",
+    laptopKey: "",
   });
   const [saved, setSaved] = useState(false);
 
@@ -36,6 +37,7 @@ export default function SettingsPage() {
     // Persist locally so it affects UI state immediately.
     try {
       localStorage.setItem("omni_stream_mode", settings.streamMode);
+      localStorage.setItem("omni_laptop_key", (settings.laptopKey || "").trim());
     } catch {
       // ignore
     }
@@ -44,7 +46,15 @@ export default function SettingsPage() {
     setTimeout(() => setSaved(false), 3000);
   };
 
+
   const settingsSections = [
+    {
+      title: "Laptop/System Authorization",
+      icon: Shield,
+      settings: [
+        { key: "laptopKey", label: "Laptop/System Key (demo)", type: "input", value: settings.laptopKey },
+      ],
+    },
     {
       title: "Notifications & Streaming Alerts",
       icon: Bell,
@@ -54,6 +64,7 @@ export default function SettingsPage() {
         { key: "criticalAlertsOnly", label: "Stream Critical Alerts Only", type: "toggle" },
       ]
     },
+
     {
       title: "Security & Guardrails",
       icon: Shield,
@@ -171,13 +182,18 @@ export default function SettingsPage() {
                           />
                         </motion.button>
                       ) : setting.type === "input" ? (
-                        <input
-                          type="number"
-                          value={settings[setting.key as keyof typeof settings] as any}
-                          onChange={(e) => handleChange(setting.key, e.target.value)}
-                          className="w-24 px-3 py-1.5 bg-black/40 border border-white/10 rounded-xl text-slate-200 text-xs font-mono focus:outline-none focus:ring-1 focus:ring-cyan-500/40"
-                        />
+                        <div className="flex items-center gap-3">
+                          <input
+                            aria-label={setting.label}
+                            type={setting.key === "dataRetention" ? "number" : "text"}
+                            placeholder={setting.key === "laptopKey" ? "Enter demo laptop/system key" : undefined}
+                            value={settings[setting.key as keyof typeof settings] as any}
+                            onChange={(e) => handleChange(setting.key, e.target.value)}
+                            className="w-64 px-3 py-1.5 bg-black/40 border border-white/10 rounded-xl text-slate-200 text-xs font-mono focus:outline-none focus:ring-1 focus:ring-cyan-500/40"
+                          />
+                        </div>
                       ) : null}
+
                     </div>
                   ))}
                 </div>
