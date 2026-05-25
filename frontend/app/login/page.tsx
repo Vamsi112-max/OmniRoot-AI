@@ -137,7 +137,7 @@ export default function LoginPage() {
                 href={DEMO_ORIGINAL_DATA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-6 text-sm rounded-2xl border border-cyan-400/35 bg-cyan-500/5 hover:bg-cyan-500/15 text-cyan-200 font-mono transition shadow-[0_0_28px_rgba(34,211,238,0.10)] text-center"
+                className="w-full py-6 text-sm rounded-2xl border border-yellow-300/35 bg-black hover:bg-yellow-500/10 text-yellow-100 font-mono transition shadow-[0_0_28px_rgba(250,204,21,0.10)] text-center"
               >
                 ▶ DEMO: Click to view Original Functional Data
               </a>
