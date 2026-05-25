@@ -132,23 +132,24 @@ export default function LoginPage() {
               />
             </div>
 
-            <div className="mt-2 flex items-center gap-3">
-              <button
-                type="button"
-                onClick={() =>
-                  window.open(
-                    DEMO_ORIGINAL_DATA_URL,
-                    "_blank",
-                    "noopener,noreferrer"
-                  )
-                }
-                className="w-full py-6 mt-2 text-sm rounded-2xl border border-cyan-400/35 bg-cyan-500/5 hover:bg-cyan-500/15 text-cyan-200 font-mono transition shadow-[0_0_28px_rgba(34,211,238,0.10)]"
+            <div className="mt-2 flex flex-col gap-2">
+              <a
+                href={DEMO_ORIGINAL_DATA_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-6 text-sm rounded-2xl border border-cyan-400/35 bg-cyan-500/5 hover:bg-cyan-500/15 text-cyan-200 font-mono transition shadow-[0_0_28px_rgba(34,211,238,0.10)] text-center"
               >
                 ▶ DEMO: Click to view Original Functional Data
-              </button>
-              <div className="text-[11px] text-slate-400/80 font-mono">
-                Opens the reference video in a new tab.
-              </div>
+              </a>
+
+              <a
+                href={DEMO_ORIGINAL_DATA_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[11px] text-cyan-200/90 font-mono underline underline-offset-2 text-center"
+              >
+                {DEMO_ORIGINAL_DATA_URL}
+              </a>
             </div>
           </div>
 

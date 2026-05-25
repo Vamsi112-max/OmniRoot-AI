@@ -1,8 +1,6 @@
-## OmniRoot AI - Hackathon MVP TODO (tracked)
+# TODO
+- [x] Update login page so the demo button redirects to https://youtu.be/ab4wuqCxm-E using an anchor tag
+- [x] Add a visible clickable URL line under the demo button
+- [ ] Verify by refreshing login page and clicking the link
 
-- [x] Implement Copilot greeting handling (hi/hello/hey)
-- [ ] Update Login demo key UI: very large demo button (done)
-- [x] After login: show one flying notification for the user
-
-- [ ] Update Settings page: ensure laptop/system key is editable + persisted
 
