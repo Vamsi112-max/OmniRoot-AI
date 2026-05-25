@@ -90,7 +90,7 @@ export default function CopilotPage() {
               reply = `Error: Simulation command returned status code ${res.status}. Check backend logs.`;
             }
           } catch {
-            reply = `Failed to transmit trigger signal to simulator backend at ${apiBaseUrl}. Ensure the server is listening on port 8000.`;
+            reply = `Failed to transmit trigger signal to simulator backend at ${apiBaseUrl}. Ensure the production backend service is online and reachable.`;
           }
           triggeredSim = true;
         }

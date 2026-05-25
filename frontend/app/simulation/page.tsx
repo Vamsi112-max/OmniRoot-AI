@@ -129,7 +129,7 @@ export default function SimulationPage() {
           <div className="bg-red-500/15 border border-red-500/30 text-red-200 rounded-2xl p-4 text-sm flex items-center gap-3 shadow-[0_0_15px_rgba(239,68,68,0.1)]">
             <AlertCircle className="shrink-0 text-red-400" size={18} />
             <div>
-              <span className="font-semibold">Connection Error:</span> {errorMsg}. Ensure the backend is running on <code className="bg-black/40 px-1 py-0.5 rounded text-red-300">port 8000</code>.
+              <span className="font-semibold">Connection Error:</span> {errorMsg}. Ensure the backend is running on <code className="bg-black/40 px-1 py-0.5 rounded text-red-300">Ensure the production backend is reachable at https://omniroot-agentic-backend.onrender.com</code>.
             </div>
           </div>
         )}
