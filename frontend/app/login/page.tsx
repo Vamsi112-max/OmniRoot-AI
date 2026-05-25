@@ -160,6 +160,38 @@ export default function LoginPage() {
             </p>
           </div>
 
+          {/* Premium: Explain About The Website */}
+          <motion.button
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.99 }}
+            type="button"
+            onClick={() => router.push("/")}
+            className="w-full py-3.5 mt-2 rounded-2xl font-semibold text-sm text-cyan-100 transition relative overflow-hidden border border-cyan-400/25 bg-white/[0.03] backdrop-blur-xl shadow-[0_0_28px_rgba(34,211,238,0.12)] hover:border-cyan-400/40"
+          >
+            <span
+              aria-hidden
+              className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300"
+            />
+            <span
+              aria-hidden
+              className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(34,211,238,0.25)_0,transparent_60%)] opacity-60"
+            />
+            <span
+              aria-hidden
+              className="absolute -inset-[2px] opacity-0 hover:opacity-100 transition-opacity duration-300 bg-[conic-gradient(from_180deg_at_50%_50%,rgba(34,211,238,0.0),rgba(34,211,238,0.45),rgba(139,92,246,0.35),rgba(34,211,238,0.0))]"
+            />
+            <span className="relative flex items-center justify-center gap-2">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 via-cyan-300 to-violet-200">
+                Explain About The Website
+              </span>
+              <Sparkles size={16} className="text-cyan-200" />
+            </span>
+            <span
+              aria-hidden
+              className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-[60%] bg-gradient-to-r from-cyan-300/0 via-cyan-300/80 to-violet-300/0 opacity-0 hover:opacity-100 transition-opacity duration-300"
+            />
+          </motion.button>
+
           {/* Submit button */}
           <motion.button
             whileHover={{ scale: 1.01 }}
