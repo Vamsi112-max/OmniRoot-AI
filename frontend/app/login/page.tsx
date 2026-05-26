@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Shield, Lock, Mail, ArrowRight, Sparkles } from "lucide-react";
 
-const DEMO_ORIGINAL_DATA_URL = "https://youtu.be/ab4wuqCxm-E";
+const DEMO_ORIGINAL_DATA_URL = "https://youtu.be/e9QKWPwebog?si=50_jwozgDqW7pXNC";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -123,13 +123,17 @@ export default function LoginPage() {
               <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500">
                 <Shield size={16} className="text-cyan-400" />
               </span>
-              <input
+<input
                 required
                 value={laptopKey}
                 onChange={(e) => setLaptopKey(e.target.value)}
                 placeholder="Enter demo laptop/system key"
                 className="w-full pl-10 pr-4 py-3 bg-black/40 border border-white/10 rounded-2xl text-slate-100 text-sm placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-cyan-500/40 focus:border-cyan-500/30 transition shadow-inner font-mono"
               />
+
+              <div className="text-[11px] text-slate-400/80 font-mono">
+                Demo dummy key (use this): <span className="text-cyan-200">DEMO-LAPTOP-KEY-123</span>
+              </div>
             </div>
 
             <div className="mt-2 flex flex-col gap-2">
@@ -142,14 +146,7 @@ export default function LoginPage() {
                 ▶ DEMO: Click to view Original Functional Data
               </a>
 
-              <a
-                href={DEMO_ORIGINAL_DATA_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[11px] text-cyan-200/90 font-mono underline underline-offset-2 text-center"
-              >
-                {DEMO_ORIGINAL_DATA_URL}
-              </a>
+
             </div>
           </div>
 
