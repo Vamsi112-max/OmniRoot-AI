@@ -12,12 +12,16 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const isLoginPage = pathname === "/login";
+  const isIntroPage = pathname === "/intro";
   const [checkingAuth, setCheckingAuth] = useState(true);
+
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("omni_logged_in") === "true";
-    if (!isLoggedIn && !isLoginPage) {
+    // Always allow public auth pages to render.
+    if (!isLoggedIn && !isLoginPage && !isIntroPage) {
       router.push("/login");
+
     } else {
       setCheckingAuth(false);
     }

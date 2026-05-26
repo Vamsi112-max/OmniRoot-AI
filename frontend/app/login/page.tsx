@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Shield, Lock, Mail, ArrowRight, Sparkles } from "lucide-react";
 
-const DEMO_ORIGINAL_DATA_URL = "https://youtu.be/e9QKWPwebog?si=50_jwozgDqW7pXNC";
+const DEMO_ORIGINAL_DATA_URL = "https://youtu.be/ab4wuqCxm-E";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -21,6 +21,14 @@ export default function LoginPage() {
     // Demo handshake: laptop/system key must exist to allow app to operate.
     localStorage.setItem("omni_laptop_key", laptopKey.trim());
     localStorage.setItem("omni_logged_in", "true");
+
+    // Single flying notification (demo): show once per fresh login.
+    try {
+      localStorage.setItem("omni_post_login_toast_pending", "true");
+    } catch {
+      // ignore
+    }
+
     router.push("/dashboard");
   };
 
@@ -124,23 +132,24 @@ export default function LoginPage() {
               />
             </div>
 
-            <div className="mt-2 flex items-center gap-3">
-              <button
-                type="button"
-                onClick={() =>
-                  window.open(
-                    DEMO_ORIGINAL_DATA_URL,
-                    "_blank",
-                    "noopener,noreferrer"
-                  )
-                }
-                className="text-[11px] px-3 py-2 rounded-xl border border-cyan-500/30 bg-cyan-500/5 hover:bg-cyan-500/10 text-cyan-200 font-mono transition"
+            <div className="mt-2 flex flex-col gap-2">
+              <a
+                href={DEMO_ORIGINAL_DATA_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-6 text-sm rounded-2xl border border-yellow-300/35 bg-black hover:bg-yellow-500/10 text-yellow-100 font-mono transition shadow-[0_0_28px_rgba(250,204,21,0.10)] text-center"
               >
-                Open Original Data
-              </button>
-              <div className="text-[11px] text-slate-400/80 font-mono">
-                Demo link for original functional data.
-              </div>
+                ▶ DEMO: Click to view Original Functional Data
+              </a>
+
+              <a
+                href={DEMO_ORIGINAL_DATA_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[11px] text-cyan-200/90 font-mono underline underline-offset-2 text-center"
+              >
+                {DEMO_ORIGINAL_DATA_URL}
+              </a>
             </div>
           </div>
 
@@ -151,6 +160,38 @@ export default function LoginPage() {
               <span className="font-semibold text-cyan-300">Sandbox Authorization Active:</span> Enter any credentials to grant immediate clearance access.
             </p>
           </div>
+
+          {/* Premium: Explain About The Website */}
+          <motion.button
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.99 }}
+            type="button"
+            onClick={() => router.push("/")}
+            className="w-full py-3.5 mt-2 rounded-2xl font-semibold text-sm text-cyan-100 transition relative overflow-hidden border border-cyan-400/25 bg-white/[0.03] backdrop-blur-xl shadow-[0_0_28px_rgba(34,211,238,0.12)] hover:border-cyan-400/40"
+          >
+            <span
+              aria-hidden
+              className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300"
+            />
+            <span
+              aria-hidden
+              className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(34,211,238,0.25)_0,transparent_60%)] opacity-60"
+            />
+            <span
+              aria-hidden
+              className="absolute -inset-[2px] opacity-0 hover:opacity-100 transition-opacity duration-300 bg-[conic-gradient(from_180deg_at_50%_50%,rgba(34,211,238,0.0),rgba(34,211,238,0.45),rgba(139,92,246,0.35),rgba(34,211,238,0.0))]"
+            />
+            <span className="relative flex items-center justify-center gap-2">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 via-cyan-300 to-violet-200">
+                Explain About The Website
+              </span>
+              <Sparkles size={16} className="text-cyan-200" />
+            </span>
+            <span
+              aria-hidden
+              className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-[60%] bg-gradient-to-r from-cyan-300/0 via-cyan-300/80 to-violet-300/0 opacity-0 hover:opacity-100 transition-opacity duration-300"
+            />
+          </motion.button>
 
           {/* Submit button */}
           <motion.button
